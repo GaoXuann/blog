@@ -45,7 +45,25 @@
     </form>
 
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-
+    <script>
+        $(function() {
+            $('#form').on('submit', function(e) {
+                e.preventDefault()
+                $.ajax({
+                    type: 'post',
+                    url: '/register',
+                    data: $("form").serialize(),
+                    dataType: 'json',
+                    success: function(result) {
+                        if (result.status != 200) {
+                            return alert(result.msg)
+                        }
+                        location.href = '/login'
+                    }
+                })
+            })
+        })
+    </script>
 
 </body>
 

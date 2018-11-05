@@ -11,18 +11,14 @@ app.set('views', './view')
 app.use('/node_modules', express.static('./node_modules'))
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.get('/', (req, res) => {
-    res.render('index.ejs', {})
-})
-app.get('/login', (req, res) => {
-    res.render('user/login.ejs', {})
-})
-app.get('/register', (req, res) => {
-        res.render('user/register.ejs', {})
-    })
-    // app.post('/register',(req,res)=>{
-    //     console.log(body.p)
-    // })
+
+const indexRouter = require('./router/index.js')
+app.use(indexRouter)
+
+const userRouter = require('./router/user.js')
+app.use(userRouter)
+
+
 app.listen(80, () => {
     console.log('http://127.0.0.1')
 })
