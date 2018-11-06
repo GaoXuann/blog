@@ -55,10 +55,11 @@
                     data: $('#form').serialize(),
                     dataType: 'json',
                     success: function(res) {
-                        if (res.status !== 200) {
+                        console.log(res)
+                        if (res.status != 200) {
                             return alert(res.msg)
                         }
-                        location.href = '/'
+                        // location.href = '/'
                     }
                 })
             })
