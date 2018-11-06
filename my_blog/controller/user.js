@@ -21,7 +21,7 @@ module.exports = {
 
             // //执行注册得业务逻辑
             user.ctime = moment().format('YYYY-MM-DD HH:mm:ss')
-            console.log(user)
+                // console.log(user)
             const addSql = 'insert into user set ?'
             conn.query(addSql, user, (err, data) => {
                 if (err) return res.status(400).send({ status: 500, msg: '请重新注册' });
@@ -40,9 +40,16 @@ module.exports = {
         conn.query(checkSql, [username, password], (err, data) => {
             if (err) return res.status(500).send({ status: 500, msg: '用户登录成功' })
             if (data.length !== 1) return res.send({ status: 400, msg: '用户登录失败' })
+            req.session.user = data[0]
+            req.session.isLogin = true
             res.send({ status: 200, msg: '登录成功' })
         })
+    },
+    logout: (req, res) => {
+        req.session.destroy(function() {
+            res.redirect('/')
+        })
+    },
 
-    }
 
 }
