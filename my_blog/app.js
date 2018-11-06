@@ -3,9 +3,17 @@ const app = express()
 const fs = require('fs')
 const path = require('path')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 
-
-//设置模板引擎
+//只要注册了session中间件，那么今后只要能访问到req的地方都可以访问到session
+app.use(
+        session({
+            secret: '这是加密的密钥',
+            resave: false,
+            saveUninitialized: false
+        })
+    )
+    //设置模板引擎
 app.set('view engine', 'ejs')
     //模板的根目录，来渲染页面的相对数据
 app.set('views', './view')

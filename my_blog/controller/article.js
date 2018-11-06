@@ -1,8 +1,9 @@
 module.exports = {
-    showIndex: (req, res) => {
-        res.render('index.ejs', {
+    add: (req, res) => {
+        res.render('article/add.ejs', {
             user: req.session.user,
             isLogin: req.session.isLogin
         })
+
     }
 }
