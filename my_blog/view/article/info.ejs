@@ -4,7 +4,7 @@
         <h1 class="text-center">
             <%= article.title %>
                 <!--只有登录，且登录人的Id和文章作者Id相同，才应该展示编辑按钮-->
-                <% if(isLogin && user.id === article.authorId){ %>
+                <% if(isLogin && user.id === article.author_id){ %>
                     <a href="/article/edit/<%= article.id %>" class="btn btn-info pull-right">编辑</a>
                     <% } %>
         </h1>
