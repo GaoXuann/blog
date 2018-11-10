@@ -25,7 +25,8 @@ module.exports = {
     },
     //详情页面
     info: (req, res) => {
-        // res.render('article/info.ejs', {})
+        if (!req.session.isLogin) return res.redirect('/')
+            // res.render('article/info.ejs', {})
         const id = req.params.id
             //根据文章得id查询详情页
         const selSql = 'select * from article where id = ?'
@@ -43,6 +44,7 @@ module.exports = {
         })
     },
     // 获取编辑页面
+
     getEdit: (req, res) => {
         if (!req.session.isLogin) return res.redirect('/')
         const sql = 'select * from article where id = ?'
