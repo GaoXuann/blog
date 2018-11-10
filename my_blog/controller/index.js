@@ -14,7 +14,7 @@ module.exports = {
          limit ${(nowpage - 1) * pagesize}, ${pagesize};
          select count(*) as count from article`
         conn.query(sql, (err, data) => {
-
+            console.log(data)
             if (err) {
                 return res.render('index.ejs', {
                     user: req.session.user,
