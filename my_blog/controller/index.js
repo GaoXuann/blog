@@ -5,7 +5,7 @@ module.exports = {
         //每页显示5条数据
         const pagesize = 5
         const nowpage = parseInt(req.query.page) || 1
-        console.log(nowpage);
+            // console.log(nowpage);
         const sql = `select a.id, a.title, a.c_time,u.nickname 
          from article as a 
          LEFT JOIN user as u 
@@ -14,7 +14,9 @@ module.exports = {
          limit ${(nowpage - 1) * pagesize}, ${pagesize};
          select count(*) as count from article`
         conn.query(sql, (err, data) => {
-            console.log(data)
+
+         
+
             if (err) {
                 return res.render('index.ejs', {
                     user: req.session.user,
